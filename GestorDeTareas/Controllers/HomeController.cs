@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace GestorDeTareas.Controllers
 {
-    public class HomeController : Controller
+    [CustomAuthorization]
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

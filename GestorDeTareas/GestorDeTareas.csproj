@@ -134,8 +134,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TareasController.cs" />
+    <Compile Include="CustomAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,6 +146,7 @@
       <DependentUpon>GestorDeTareasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entidades\Tarea.cs" />
+    <Compile Include="Models\Entidades\Usuario.cs" />
     <Compile Include="Models\Estado.cs">
       <DependentUpon>GestorDeTareasModel.tt</DependentUpon>
     </Compile>
@@ -233,9 +237,12 @@
     <Content Include="Views\Tareas\Details.cshtml" />
     <Content Include="Views\Tareas\Edit.cshtml" />
     <Content Include="Views\Tareas\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

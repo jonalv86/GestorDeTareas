@@ -10,7 +10,8 @@ using GestorDeTareas.Models;
 
 namespace GestorDeTareas.Controllers
 {
-    public class TareasController : Controller
+    [CustomAuthorization]
+    public class TareasController : BaseController
     {
         // GET: Tareas
         public ActionResult Index()
