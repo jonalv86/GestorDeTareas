@@ -55,6 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -136,6 +138,36 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Comentario.cs">
+      <DependentUpon>GestorDeTareasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estado.cs">
+      <DependentUpon>GestorDeTareasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestorDeTareasModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestorDeTareasModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestorDeTareasModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestorDeTareasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestorDeTareasModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestorDeTareasModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prioridad.cs">
+      <DependentUpon>GestorDeTareasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tarea.cs">
+      <DependentUpon>GestorDeTareasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>GestorDeTareasModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,8 +179,26 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\GestorDeTareasModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GestorDeTareasModel.Context.cs</LastGenOutput>
+      <DependentUpon>GestorDeTareasModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\GestorDeTareasModel.edmx.sql" />
+    <Content Include="Models\GestorDeTareasModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GestorDeTareasModel.cs</LastGenOutput>
+      <DependentUpon>GestorDeTareasModel.edmx</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\GestorDeTareasModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GestorDeTareasModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\GestorDeTareasModel.edmx.diagram">
+      <DependentUpon>GestorDeTareasModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -179,7 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\Entidades\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

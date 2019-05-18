@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GestorDeTareasModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="GestorDeTareasModelStoreContainer">
+    <EntitySet Name="TareaSet" EntityType="GestorDeTareasModel.Store.TareaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsuarioSet" EntityType="GestorDeTareasModel.Store.UsuarioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ComentarioSet" EntityType="GestorDeTareasModel.Store.ComentarioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PrioridadSet" EntityType="GestorDeTareasModel.Store.PrioridadSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EstadoSet" EntityType="GestorDeTareasModel.Store.EstadoSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TareaUsuarioAlta" Association="GestorDeTareasModel.Store.TareaUsuarioAlta">
+      <End Role="Tarea" EntitySet="TareaSet" />
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="AsignacionTarea" Association="GestorDeTareasModel.Store.AsignacionTarea">
+      <End Role="Tarea" EntitySet="TareaSet" />
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="TareaUsuarioBaja" Association="GestorDeTareasModel.Store.TareaUsuarioBaja">
+      <End Role="Tarea" EntitySet="TareaSet" />
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="PrioridadTarea" Association="GestorDeTareasModel.Store.PrioridadTarea">
+      <End Role="Tarea" EntitySet="TareaSet" />
+      <End Role="Prioridad" EntitySet="PrioridadSet" />
+    </AssociationSet>
+    <AssociationSet Name="EstadoTarea" Association="GestorDeTareasModel.Store.EstadoTarea">
+      <End Role="Estado" EntitySet="EstadoSet" />
+      <End Role="Tarea" EntitySet="TareaSet" />
+    </AssociationSet>
+    <AssociationSet Name="ComentarioTarea" Association="GestorDeTareasModel.Store.ComentarioTarea">
+      <End Role="Tarea" EntitySet="TareaSet" />
+      <End Role="Comentario" EntitySet="ComentarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="ComentarioUsuario" Association="GestorDeTareasModel.Store.ComentarioUsuario">
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+      <End Role="Comentario" EntitySet="ComentarioSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TareaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UsuarioAsignadoId" Type="int" Nullable="true" />
+    <Property Name="FechaVencimiento" Type="datetime" Nullable="true" />
+    <Property Name="UsuarioAltaId" Type="int" Nullable="false" />
+    <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="UsuarioBajaId" Type="int" Nullable="true" />
+    <Property Name="FechaBaja" Type="datetime" Nullable="true" />
+    <Property Name="PrioridadId" Type="int" Nullable="false" />
+    <Property Name="EstadoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuarioSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ComentarioSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ordinal" Type="int" Nullable="false" />
+    <Property Name="ComentarioDescripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ComentarioFecha" Type="datetime" Nullable="false" />
+    <Property Name="TareaId" Type="int" Nullable="false" />
+    <Property Name="UsuarioId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrioridadSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrioridadDesc" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EstadoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EstadoDesc" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="TareaUsuarioAlta">
+    <End Role="Tarea" Type="GestorDeTareasModel.Store.TareaSet" Multiplicity="*" />
+    <End Role="Usuario" Type="GestorDeTareasModel.Store.UsuarioSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tarea">
+        <PropertyRef Name="UsuarioAltaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AsignacionTarea">
+    <End Role="Tarea" Type="GestorDeTareasModel.Store.TareaSet" Multiplicity="*" />
+    <End Role="Usuario" Type="GestorDeTareasModel.Store.UsuarioSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tarea">
+        <PropertyRef Name="UsuarioAsignadoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TareaUsuarioBaja">
+    <End Role="Tarea" Type="GestorDeTareasModel.Store.TareaSet" Multiplicity="*" />
+    <End Role="Usuario" Type="GestorDeTareasModel.Store.UsuarioSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tarea">
+        <PropertyRef Name="UsuarioBajaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PrioridadTarea">
+    <End Role="Tarea" Type="GestorDeTareasModel.Store.TareaSet" Multiplicity="*" />
+    <End Role="Prioridad" Type="GestorDeTareasModel.Store.PrioridadSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Prioridad">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tarea">
+        <PropertyRef Name="PrioridadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EstadoTarea">
+    <End Role="Estado" Type="GestorDeTareasModel.Store.EstadoSet" Multiplicity="1" />
+    <End Role="Tarea" Type="GestorDeTareasModel.Store.TareaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tarea">
+        <PropertyRef Name="EstadoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComentarioTarea">
+    <End Role="Tarea" Type="GestorDeTareasModel.Store.TareaSet" Multiplicity="1" />
+    <End Role="Comentario" Type="GestorDeTareasModel.Store.ComentarioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tarea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comentario">
+        <PropertyRef Name="TareaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComentarioUsuario">
+    <End Role="Usuario" Type="GestorDeTareasModel.Store.UsuarioSet" Multiplicity="1" />
+    <End Role="Comentario" Type="GestorDeTareasModel.Store.ComentarioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comentario">
+        <PropertyRef Name="UsuarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="GestorDeTareasModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="GestorDeTareasModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TareaSet" EntityType="GestorDeTareasModel.Tarea" />
+          <EntitySet Name="UsuarioSet" EntityType="GestorDeTareasModel.Usuario" />
+          <EntitySet Name="ComentarioSet" EntityType="GestorDeTareasModel.Comentario" />
+          <EntitySet Name="PrioridadSet" EntityType="GestorDeTareasModel.Prioridad" />
+          <EntitySet Name="EstadoSet" EntityType="GestorDeTareasModel.Estado" />
+          <AssociationSet Name="TareaUsuarioAlta" Association="GestorDeTareasModel.TareaUsuarioAlta">
+            <End Role="Tarea" EntitySet="TareaSet" />
+            <End Role="Usuario" EntitySet="UsuarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="AsignacionTarea" Association="GestorDeTareasModel.AsignacionTarea">
+            <End Role="Tarea" EntitySet="TareaSet" />
+            <End Role="Usuario" EntitySet="UsuarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="TareaUsuarioBaja" Association="GestorDeTareasModel.TareaUsuarioBaja">
+            <End Role="Tarea" EntitySet="TareaSet" />
+            <End Role="Usuario" EntitySet="UsuarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="PrioridadTarea" Association="GestorDeTareasModel.PrioridadTarea">
+            <End Role="Tarea" EntitySet="TareaSet" />
+            <End Role="Prioridad" EntitySet="PrioridadSet" />
+          </AssociationSet>
+          <AssociationSet Name="EstadoTarea" Association="GestorDeTareasModel.EstadoTarea">
+            <End Role="Estado" EntitySet="EstadoSet" />
+            <End Role="Tarea" EntitySet="TareaSet" />
+          </AssociationSet>
+          <AssociationSet Name="ComentarioTarea" Association="GestorDeTareasModel.ComentarioTarea">
+            <End Role="Tarea" EntitySet="TareaSet" />
+            <End Role="Comentario" EntitySet="ComentarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="ComentarioUsuario" Association="GestorDeTareasModel.ComentarioUsuario">
+            <End Role="Usuario" EntitySet="UsuarioSet" />
+            <End Role="Comentario" EntitySet="ComentarioSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tarea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="UsuarioAsignadoId" Type="Int32" Nullable="true" />
+          <Property Name="FechaVencimiento" Type="DateTime" Nullable="true" />
+          <Property Name="UsuarioAltaId" Type="Int32" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" />
+          <Property Name="UsuarioBajaId" Type="Int32" Nullable="true" />
+          <Property Name="FechaBaja" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="UsuarioAlta" Relationship="GestorDeTareasModel.TareaUsuarioAlta" FromRole="Tarea" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioAsignado" Relationship="GestorDeTareasModel.AsignacionTarea" FromRole="Tarea" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioBaja" Relationship="GestorDeTareasModel.TareaUsuarioBaja" FromRole="Tarea" ToRole="Usuario" />
+          <NavigationProperty Name="Prioridad" Relationship="GestorDeTareasModel.PrioridadTarea" FromRole="Tarea" ToRole="Prioridad" />
+          <Property Name="PrioridadId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="GestorDeTareasModel.EstadoTarea" FromRole="Tarea" ToRole="Estado" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comentarios" Relationship="GestorDeTareasModel.ComentarioTarea" FromRole="Tarea" ToRole="Comentario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="TareasCreadas" Relationship="GestorDeTareasModel.TareaUsuarioAlta" FromRole="Usuario" ToRole="Tarea" />
+          <NavigationProperty Name="TareasAsignadas" Relationship="GestorDeTareasModel.AsignacionTarea" FromRole="Usuario" ToRole="Tarea" />
+          <NavigationProperty Name="TareasEliminadas" Relationship="GestorDeTareasModel.TareaUsuarioBaja" FromRole="Usuario" ToRole="Tarea" />
+          <NavigationProperty Name="Comentarios" Relationship="GestorDeTareasModel.ComentarioUsuario" FromRole="Usuario" ToRole="Comentario" />
+        </EntityType>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ordinal" Type="Int32" Nullable="false" />
+          <Property Name="ComentarioDescripcion" Type="String" Nullable="false" />
+          <Property Name="ComentarioFecha" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Tarea" Relationship="GestorDeTareasModel.ComentarioTarea" FromRole="Comentario" ToRole="Tarea" />
+          <Property Name="TareaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="GestorDeTareasModel.ComentarioUsuario" FromRole="Comentario" ToRole="Usuario" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prioridad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrioridadDesc" Type="String" Nullable="false" />
+          <NavigationProperty Name="Tareas" Relationship="GestorDeTareasModel.PrioridadTarea" FromRole="Prioridad" ToRole="Tarea" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EstadoDesc" Type="String" Nullable="false" />
+          <NavigationProperty Name="Tareas" Relationship="GestorDeTareasModel.EstadoTarea" FromRole="Estado" ToRole="Tarea" />
+        </EntityType>
+        <Association Name="TareaUsuarioAlta">
+          <End Type="GestorDeTareasModel.Tarea" Role="Tarea" Multiplicity="*" />
+          <End Type="GestorDeTareasModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="UsuarioAltaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AsignacionTarea">
+          <End Type="GestorDeTareasModel.Tarea" Role="Tarea" Multiplicity="*" />
+          <End Type="GestorDeTareasModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="UsuarioAsignadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TareaUsuarioBaja">
+          <End Type="GestorDeTareasModel.Tarea" Role="Tarea" Multiplicity="*" />
+          <End Type="GestorDeTareasModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="UsuarioBajaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PrioridadTarea">
+          <End Type="GestorDeTareasModel.Tarea" Role="Tarea" Multiplicity="*" />
+          <End Type="GestorDeTareasModel.Prioridad" Role="Prioridad" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Prioridad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="PrioridadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EstadoTarea">
+          <End Type="GestorDeTareasModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="GestorDeTareasModel.Tarea" Role="Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ComentarioTarea">
+          <End Type="GestorDeTareasModel.Tarea" Role="Tarea" Multiplicity="1" />
+          <End Type="GestorDeTareasModel.Comentario" Role="Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="TareaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ComentarioUsuario">
+          <End Type="GestorDeTareasModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="GestorDeTareasModel.Comentario" Role="Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestorDeTareasModelStoreContainer" CdmEntityContainer="GestorDeTareasModelContainer">
+    <EntitySetMapping Name="TareaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GestorDeTareasModel.Tarea)">
+        <MappingFragment StoreEntitySet="TareaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="UsuarioAsignadoId" ColumnName="UsuarioAsignadoId" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="UsuarioAltaId" ColumnName="UsuarioAltaId" />
+          <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+          <ScalarProperty Name="UsuarioBajaId" ColumnName="UsuarioBajaId" />
+          <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+          <ScalarProperty Name="PrioridadId" ColumnName="PrioridadId" />
+          <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GestorDeTareasModel.Usuario)">
+        <MappingFragment StoreEntitySet="UsuarioSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComentarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GestorDeTareasModel.Comentario)">
+        <MappingFragment StoreEntitySet="ComentarioSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
+          <ScalarProperty Name="ComentarioDescripcion" ColumnName="ComentarioDescripcion" />
+          <ScalarProperty Name="ComentarioFecha" ColumnName="ComentarioFecha" />
+          <ScalarProperty Name="TareaId" ColumnName="TareaId" />
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrioridadSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GestorDeTareasModel.Prioridad)">
+        <MappingFragment StoreEntitySet="PrioridadSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PrioridadDesc" ColumnName="PrioridadDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GestorDeTareasModel.Estado)">
+        <MappingFragment StoreEntitySet="EstadoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EstadoDesc" ColumnName="EstadoDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
