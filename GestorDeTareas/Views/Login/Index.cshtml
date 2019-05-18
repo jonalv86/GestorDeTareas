@@ -1,13 +1,10 @@
-﻿@using GestorDeTareas.ViewModels
-@model LoginViewModel
-@{
-    ViewBag.Title = "Login";
-}
+﻿@model GestorDeTareas.ViewModels.LoginViewModel
 
 <div class="container body-content">
     <div class="form-horizontal">
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
             <div class="form-group">
                 @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nombre, string.Empty, new { @class = "text-danger" })

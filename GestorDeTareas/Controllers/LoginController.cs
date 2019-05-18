@@ -14,13 +14,16 @@ namespace GestorDeTareas.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(LoginViewModel modelo)
         {
             if(ModelState.IsValid)
             {
-                GestorDeTareasModelContainer db = new GestorDeTareasModelContainer();
-                Usuario user = Usuario.ObtenerCrearUsuario(modelo.Nombre);
-                SetUsuarioLogueado(user);
+                using (GestorDeTareasModelContainer db = new GestorDeTareasModelContainer())
+                {
+                    Usuario user = Usuario.ObtenerCrearUsuario(db, modelo.Nombre);
+                    SetUsuarioLogueado(user);
+                }
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index");
