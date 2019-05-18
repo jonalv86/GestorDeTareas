@@ -1,4 +1,5 @@
 ﻿using GestorDeTareas.Models;
+using GestorDeTareas.ViewModels;
 using System.Web.Mvc;
 
 namespace GestorDeTareas.Controllers
@@ -9,19 +10,23 @@ namespace GestorDeTareas.Controllers
         public ActionResult Index()
         {
             if (GetUsuarioLogueado() != null) return RedirectToAction("Index", "Home");
-            return View();
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
-        public ActionResult Index(string usuario)
+        public ActionResult Index(LoginViewModel modelo)
         {
-            GestorDeTareasModelContainer db = new GestorDeTareasModelContainer();
-            Usuario user = Usuario.ObtenerCrearUsuario(usuario);
-            SetUsuarioLogueado(user);
-            return RedirectToAction("Index", "Home");
+            if(ModelState.IsValid)
+            {
+                GestorDeTareasModelContainer db = new GestorDeTareasModelContainer();
+                Usuario user = Usuario.ObtenerCrearUsuario(modelo.Nombre);
+                SetUsuarioLogueado(user);
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Index");
         }
 
-        public ActionResult LogOff()
+        public ActionResult LogOut()
         {
             Session.Abandon();
             return RedirectToAction("Index", "Login");
