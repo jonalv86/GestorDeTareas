@@ -185,6 +185,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker.css" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker.min.css" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker3.css" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker3.standalone.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -209,7 +217,17 @@
     <Content Include="Models\GestorDeTareasModel.edmx.diagram">
       <DependentUpon>GestorDeTareasModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker.css.map" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker.min.css.map" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker.standalone.min.css.map" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker3.css.map" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker3.min.css.map" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="Content\css\DatePicker\bootstrap-datepicker3.standalone.min.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\DatePicker\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\DatePicker\bootstrap-datepicker.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -238,8 +256,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Tareas\Alta.cshtml" />
     <Content Include="Views\Tareas\Delete.cshtml" />
-    <Content Include="Views\Tareas\Details.cshtml" />
-    <Content Include="Views\Tareas\Edit.cshtml" />
+    <Content Include="Views\Tareas\Ver.cshtml" />
+    <Content Include="Views\Tareas\Editar.cshtml" />
     <Content Include="Views\Tareas\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>

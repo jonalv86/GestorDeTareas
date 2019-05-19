@@ -7,36 +7,14 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaVencimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaAlta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaBaja)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UsuarioAlta.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UsuarioAsignado.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UsuarioBaja.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Prioridad.PrioridadDesc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado.EstadoDesc)
-        </th>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Fecha de Creación</th>
+        <th>Fecha de Vencimiento</th>
+        <th>Creado por</th>
+        <th>Asignado a</th>
+        <th>Prioridad</th>
+        <th>Estado</th>
         <th></th>
     </tr>
 
@@ -49,10 +27,10 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaVencimiento)
+            @Html.DisplayFor(modelItem => item.FechaAlta)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaAlta)
+            @Html.DisplayFor(modelItem => item.FechaVencimiento)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaBaja)
@@ -64,17 +42,14 @@
             @Html.DisplayFor(modelItem => item.UsuarioAsignado.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UsuarioBaja.Nombre)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Prioridad.PrioridadDesc)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estado.EstadoDesc)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+            @Html.ActionLink("Ver Tarea", "Ver", new { id = item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

@@ -1,0 +1,72 @@
+﻿@using GestorDeTareas.Models
+@model GestorDeTareas.Models.Tarea
+
+@{
+    ViewBag.Title = "Ver Tarea";
+    Usuario usuarioLogueado = (Usuario)Session["user"];
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tarea</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Título</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>Descripción</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>Fecha de Creación</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaAlta)
+        </dd>
+
+        <dt>Fecha de Vencimiento</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaVencimiento)
+        </dd>
+
+        <dt>Creado por</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioAlta.Nombre)
+        </dd>
+
+        <dt>Asignado a</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioAsignado.Nombre)
+        </dd>
+
+        <dt>Prioridad</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prioridad.PrioridadDesc)
+        </dd>
+
+        <dt>Estado</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado.EstadoDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (usuarioLogueado.Id == Model.UsuarioAlta.Id || usuarioLogueado.Id == Model.UsuarioAsignado?.Id)
+    {
+        @Html.ActionLink("Editar", "Editar", new { id = Model.Id });
+    }
+    @Html.ActionLink("Comentar", "Comentar")    @*TODO: Comentar por modal*@
+    @Html.ActionLink("Volver", "Index")
+</p>
